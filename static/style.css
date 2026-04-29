@@ -1,0 +1,128 @@
+/* GLOBAL RESET */
+* {
+    box-sizing: border-box; /* Fixes padding/width issues globally */
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif; /* Slightly more modern font stack */
+    background-image: url("https://images.unsplash.com/photo-1540189549336-e6e99c3679fe");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #333; /* Fallback color so text is readable if image fails */
+}
+
+/* NAVBAR */
+.navbar {
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%; /* Percentage padding helps on wider screens */
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: #f1c40f;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    color: white;
+    padding: 100px 20px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* BUTTON */
+.btn {
+    background: linear-gradient(45deg, #ff7a18, #ffb347);
+    padding: 12px 25px;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* CARD */
+.card {
+    background: white;
+    max-width: 400px; /* Limits size on desktop */
+    width: 90%;      /* Shrinks on mobile */
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+/* FORM */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+input:focus {
+    border-color: #ff7a18; /* Highlights the field when typing */
+}
+
+/* TABLE */
+.table-container {
+    overflow-x: auto; /* Adds a scrollbar for tables on small phones */
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden; /* Rounds the table corners */
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+th {
+    background: #ff6a00;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #fff9f5; /* Subtle row highlight */
+}

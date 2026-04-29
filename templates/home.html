@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Zero Hunger Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">🍽️ Zero Hunger</div>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/ngos">NGOs</a>
+            {% if session.get('user_id') %}
+                <a href="/donate">Donate</a>
+                <a href="/my-coupons">My Coupons</a>
+                <a href="/logout" style="color: #ff7a18;">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+                <a href="/signup">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>🌍 Zero Hunger Initiative</h1>
+        <p style="font-size:20px; margin:20px 0;">
+            Food donate kare, coupons paaye aur kisi ki madad kare!
+        </p>
+        
+        <div style="margin-top: 30px;">
+            <a href="/donate" class="btn">🎁 Donate & Get Coupons</a>
+            <a href="/ngos" class="btn" style="background: rgba(255,255,255,0.2); border: 1px solid white;">🏢 NGO Portal</a>
+        </div>
+    </div>
+
+    <div style="background: rgba(255,255,255,0.95); padding: 40px 20px; margin: -50px auto 40px; max-width: 900px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; z-index: 10;">
+        
+        <h2 style="text-align:center; color:#ff6a00; margin-bottom: 10px;">🎉 Rewards Program</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Earn coupons for every meal donated based on quality.</p>
+
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+            
+            <div style="text-align: center; flex: 1; min-width: 200px;">
+                <div style="font-size: 40px; margin-bottom: 10px;">⭐</div>
+                <h3 style="margin: 5px 0;">Best Quality</h3>
+                <p style="color: #27ae60; font-size: 24px; font-weight: bold; margin: 5px 0;">₹100</p>
+            </div>
+
+            <div style="text-align: center; flex: 1; min-width: 200px;">
+                <div style="font-size: 40px; margin-bottom: 10px;">👍</div>
+                <h3 style="margin: 5px 0;">Good Quality</h3>
+                <p style="color: #3498db; font-size: 24px; font-weight: bold; margin: 5px 0;">₹50</p>
+            </div>
+
+            <div style="text-align: center; flex: 1; min-width: 200px;">
+                <div style="font-size: 40px; margin-bottom: 10px;">✓</div>
+                <h3 style="margin: 5px 0;">Average Quality</h3>
+                <p style="color: #f39c12; font-size: 24px; font-weight: bold; margin: 5px 0;">₹25</p>
+            </div>
+
+        </div>
+
+        <p style="text-align: center; font-size: 16px; color: #555; margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+            Aapka ek chota sa yogdaan kisi ki bhook mita sakta hai. <strong>Donate today!</strong>
+        </p>
+
+    </div>
+
+    <footer style="text-align: center; color: white; padding: 20px; font-size: 14px; opacity: 0.8;">
+        &copy; 2026 Zero Hunger Project. Sabhi ke liye bhojan.
+    </footer>
+
+</body>
+</html>

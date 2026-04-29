@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success | Zero Hunger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .coupon-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            color: white;
+            border: 3px dashed rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3);
+            position: relative;
+        }
+        .coupon-code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 15px 0;
+        }
+        .coupon-value {
+            font-size: 42px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .confetti-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">🍽️ Zero Hunger</div>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/my-coupons">My Coupons</a>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 60px;">
+        <span class="confetti-icon">🎉</span>
+        <h2 style="color: #27ae60;">Donation Successful!</h2>
+        <p style="color: #666;">Thank you for making a difference today.</p>
+
+        {% if coupon %}
+        <div class="coupon-box">
+            <p style="margin: 0; font-weight: bold; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">
+                Reward Unlocked
+            </p>
+            <div class="coupon-code">{{ coupon[0] }}</div>
+            <div class="coupon-value">₹{{ coupon[1] }}</div>
+            <p style="font-size: 13px; opacity: 0.9; margin-top: 15px;">
+                Use this code at checkout with our partners.
+            </p>
+        </div>
+        {% else %}
+        <div style="padding: 20px; color: #888;">
+            Processing your reward... check 'My Coupons' shortly!
+        </div>
+        {% endif %}
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="/donate" class="btn">Donate More Food</a>
+            <a href="/my-coupons" class="btn" style="background: linear-gradient(45deg,#27ae60,#2ecc71);">View All My Coupons</a>
+            <a href="/" style="text-decoration: none; color: #999; font-size: 13px; margin-top: 10px;">Return to Home</a>
+        </div>
+    </div>
+
+    <audio id="successSound" preload="auto">
+        <source src="{{ url_for('static', filename='success-sound.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Playing audio via script is more reliable than the 'autoplay' attribute
+        window.addEventListener('load', function() {
+            var audio = document.getElementById('successSound');
+            audio.play().catch(function(error) {
+                console.log("Autoplay prevented by browser, but that's okay!");
+            });
+        });
+    </script>
+
+</body>
+</html>

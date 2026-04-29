@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Available Donations - NGO View</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div style="padding:20px;">
+
+<h2 style="text-align:center; color:white; background:rgba(0,0,0,0.7); padding:20px; border-radius:10px;">🍲 Available Food Donations</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Food</th>
+<th>Quantity</th>
+<th>Location</th>
+<th>Time</th>
+<th>Quality</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+
+{% for donation in donations %}
+
+<tr>
+<td>{{ donation[0] }}</td>
+<td>{{ donation[1] }}</td>
+<td>{{ donation[2] }}</td>
+<td><a href="/map/{{ donation[3] }}" style="color:#ff6a00;">{{ donation[3] }}</a></td>
+<td>{{ donation[4] }}</td>
+<td>
+    {% if donation[5] == 'Best' %}
+        <span style="background:#27ae60; color:white; padding:5px 10px; border-radius:5px;">⭐ Best</span>
+    {% elif donation[5] == 'Good' %}
+        <span style="background:#3498db; color:white; padding:5px 10px; border-radius:5px;">👍 Good</span>
+    {% else %}
+        <span style="background:#f39c12; color:white; padding:5px 10px; border-radius:5px;">✓ Average</span>
+    {% endif %}
+</td>
+<td>{{ donation[6] }}</td>
+<td>
+    {% if donation[6] == 'Available' %}
+    <a href="/confirm/{{ donation[0] }}" onclick="playConfirmSound()" style="background:#3498db; color:white; padding:8px 12px; border-radius:5px; text-decoration:none;">Confirm</a>
+    {% elif donation[6] == 'Confirmed' %}
+    <a href="/receive/{{ donation[0] }}" onclick="playReceiveSound()" style="background:#27ae60; color:white; padding:8px 12px; border-radius:5px; text-decoration:none;">Receive</a>
+    {% else %}
+    <span style="color:#27ae60; font-weight:bold;">✓ Received</span>
+    {% endif %}
+</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div style="text-align:center; margin:20px;">
+<a href="/" class="btn">Back Home</a>
+</div>
+
+</div>
+
+<audio id="confirmSound">
+<source src="/static/confirm-sound.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="receiveSound">
+<source src="/static/receive-sound.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playConfirmSound() {
+    var audio = document.getElementById('confirmSound');
+    audio.play();
+}
+
+function playReceiveSound() {
+    var audio = document.getElementById('receiveSound');
+    audio.play();
+}
+</script>
+
+</body>
+</html>

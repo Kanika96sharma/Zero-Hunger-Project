@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Food | Zero Hunger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">Zero Hunger 🍎</div>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/my-coupons">My Coupons</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🍽️ Donate Food</h2>
+        <p>Hi <strong>{{ name }}</strong>, thanks for sharing!</p>
+        
+        <form method="POST" id="donateForm">
+            <input type="text" name="food" placeholder="What food are you donating? (e.g. Rice, Dal)" required>
+            <input type="text" name="quantity" placeholder="Quantity (e.g. 10 People, 5 Kg)" required>
+            <input type="text" name="location" placeholder="Pickup Address (e.g. Sector 14)" required>
+            
+            <div style="text-align: left; margin: 10px 0;">
+                <label for="time" style="font-size: 0.9rem; color: #666;">Pickup Time Available Until:</label>
+                <input type="time" name="time" id="time" required>
+            </div>
+
+            <select name="quality" required>
+                <option value="" disabled selected>Select Food Quality</option>
+                <option value="Best">Excellent (Get ₹100 Coupon)</option>
+                <option value="Good">Good (Get ₹50 Coupon)</option>
+                <option value="Average">Average (Get ₹25 Coupon)</option>
+            </select>
+
+            <button class="btn" type="submit" style="width: 100%; border: none;">Submit Donation</button>
+        </form>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+            <a href="/my-coupons" class="btn" style="background: linear-gradient(45deg,#27ae60,#2ecc71);">View My Coupons</a>
+            <a href="/" style="text-decoration: none; color: #666; font-size: 14px; margin-top: 10px;">Back to Home</a>
+        </div>
+    </div>
+
+    <audio id="donateSound" preload="auto">
+        <source src="{{ url_for('static', filename='donate-sound.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.getElementById('donateForm').addEventListener('submit', function(e) {
+            const audio = document.getElementById('donateSound');
+            // Play sound. Since form is submitting, we don't preventDefault 
+            // unless you want a delay to hear the full sound.
+            audio.play().catch(error => console.log("Audio play blocked by browser"));
+        });
+    </script>
+
+</body>
+</html>

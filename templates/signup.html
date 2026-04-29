@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | Zero Hunger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">🍽️ Zero Hunger</div>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 80px;">
+        <h2>📝 Create Account</h2>
+        <p style="color: #666;">Join us in the fight against hunger!</p>
+
+        {% if error %}
+        <div style="background: #fee2e2; color: #dc2626; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; border: 1px solid #fecaca; text-align: left;">
+            <strong>Registration Issue:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="/signup">
+            <div style="text-align: left;">
+                <label style="font-size: 13px; color: #555; font-weight: bold;">Full Name</label>
+                <input type="text" name="name" placeholder="Enter your full name" required autofocus>
+            </div>
+
+            <div style="text-align: left; margin-top: 10px;">
+                <label style="font-size: 13px; color: #555; font-weight: bold;">Username</label>
+                <input type="text" name="username" placeholder="Choose a unique username" required>
+            </div>
+
+            <div style="text-align: left; margin-top: 10px;">
+                <label style="font-size: 13px; color: #555; font-weight: bold;">Password</label>
+                <input type="password" name="password" placeholder="Create a strong password" required>
+            </div>
+
+            <button class="btn" type="submit" style="width: 100%; border: none; margin-top: 20px; font-size: 16px;">
+                Create Account
+            </button>
+        </form>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+
+        <p style="font-size: 14px; color: #444;">
+            Pehle se account hai? 
+            <a href="/login" style="color:#ff6a00; font-weight: bold; text-decoration: none;">Login kare</a>
+        </p>
+
+        <div style="margin-top: 15px;">
+            <a href="/" style="text-decoration: none; color: #888; font-size: 13px;">← Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

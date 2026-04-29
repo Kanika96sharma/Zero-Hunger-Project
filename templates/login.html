@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Zero Hunger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">🍽️ Zero Hunger</div>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/signup">Sign Up</a>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 100px;">
+        <h2>🔐 Welcome Back</h2>
+        <p style="color: #666;">Login kare aur food donate karna shuru kare</p>
+
+        {% if error %}
+        <div style="background: #fee2e2; color: #dc2626; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; border: 1px solid #fecaca;">
+            ⚠️ {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required autofocus>
+            <input type="password" name="password" placeholder="Password" required>
+            
+            <button class="btn" type="submit" style="width: 100%; border: none; margin-top: 10px;">
+                Secure Login
+            </button>
+        </form>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <p style="font-size: 14px;">Naye user ho? 
+            <a href="/signup" style="color:#ff6a00; font-weight: bold; text-decoration: none;">Signup kare</a>
+        </p>
+
+        <a href="/" style="text-decoration: none; color: #999; font-size: 13px;">← Back to Home</a>
+    </div>
+
+</body>
+</html>

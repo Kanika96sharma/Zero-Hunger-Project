@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Zero Hunger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        /* Overriding card margin for the dashboard layout */
+        .stats-container .card {
+            margin: 10px;
+            flex: 1;
+            min-width: 250px;
+        }
+        .badge {
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">Zero Hunger 🍎</div>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <header class="hero" style="padding: 40px 20px;">
+        <h1>📊 Admin Dashboard</h1>
+        <p>Real-time overview of food donation metrics</p>
+    </header>
+
+    <div class="stats-container">
+        <div class="card">
+            <h3>Total Donations</h3>
+            <h1 style="color:#ff6a00;">{{ total }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Available Food</h3>
+            <h1 style="color:#3498db;">{{ available }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Received Food</h3>
+            <h1 style="color:#27ae60;">{{ received }}</h1>
+        </div>
+    </div>
+
+    <h2 style="text-align:center; color:white; background:rgba(0,0,0,0.7); padding:15px; margin:40px 0 0 0;">Recent Activity</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Food Item</th>
+                    <th>Qty</th>
+                    <th>Location</th>
+                    <th>Time</th>
+                    <th>Quality</th>
+                    <th>Status</th>
+                    <th>Donor ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in donations %}
+                <tr>
+                    <td>#{{ d[0] }}</td>
+                    <td><strong>{{ d[1] }}</strong></td>
+                    <td>{{ d[2] }}</td>
+                    <td>{{ d[3] }}</td>
+                    <td>{{ d[4] }}</td>
+                    <td>
+                        {% if d[5] == 'Best' %}
+                            <span class="badge" style="color:#27ae60;">⭐ Best</span>
+                        {% elif d[5] == 'Good' %}
+                            <span class="badge" style="color:#3498db;">👍 Good</span>
+                        {% else %}
+                            <span class="badge" style="color:#f39c12;">✓ Average</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <span class="status-{{ d[6]|lower }}">{{ d[6] }}</span>
+                    </td>
+                    <td>UID: {{ d[7] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div style="text-align: center; padding: 40px;">
+        <a href="/" class="btn">Return to Home</a>
+    </div>
+
+</body>
+</html>

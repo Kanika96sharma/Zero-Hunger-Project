@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Rewards | Zero Hunger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .coupon-list {
+            max-height: 500px;
+            overflow-y: auto;
+            margin: 20px 0;
+            padding-right: 5px;
+        }
+        .coupon-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            color: white;
+            border: 2px dashed rgba(255, 255, 255, 0.6);
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .coupon-card:hover {
+            transform: translateY(-3px);
+        }
+        .coupon-code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background: rgba(0,0,0,0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .coupon-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status-active { background: #27ae60; }
+        .status-used { background: #e74c3c; opacity: 0.8; }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">Zero Hunger 🍎</div>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/donate">Donate</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="card" style="max-width: 500px; width: 95%;">
+        <h2>🎟️ My Rewards</h2>
+        <p>Keep up the great work, <strong>{{ name }}</strong>!</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <div class="coupon-list">
+            {% if coupons %}
+                {% for coupon in coupons %}
+                <div class="coupon-card">
+                    <div class="coupon-value">₹{{ coupon['value'] }}</div>
+                    <div class="coupon-code">{{ coupon['code'] }}</div>
+                    
+                    <span class="badge {% if coupon['status'] == 'Active' %}status-active{% else %}status-used{% endif %}">
+                        {{ coupon['status'] }}
+                    </span>
+                    
+                    <div style="font-size: 12px; margin-top: 10px; opacity: 0.9;">
+                        Valid at partner grocery stores
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div style="padding: 40px 0;">
+                    <p style="color: #666;">No coupons yet.</p>
+                    <p><strong>Donate food to earn your first reward!</strong></p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="/donate" class="btn">Donate More Food</a>
+            <a href="/" style="text-decoration: none; color: #666; font-size: 14px;">Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>
